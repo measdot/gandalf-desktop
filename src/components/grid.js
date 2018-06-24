@@ -7,7 +7,7 @@ $(function () {
 		},
 		sortData: [ { field: 'lname', direction: 'asc' } ],
 		columns: [
-			{ field: 'service', caption: 'List of services, double click to open', size: '30%', sortable: true },
+			{ field: 'service', caption: 'Services tagged #prt-works, double click on any to open', size: '30%', sortable: true },
 		],
 		records: [
 			{ recid: 1, service: 'Create a merge request'},
@@ -29,6 +29,7 @@ $(function () {
 					} else {
 						tabs.add(
 							{ id: 'tab' + sel_record.recid, caption: sel_record.service, closable: true });
+						tabs.select(sel_record.recid);
 					}
 
 				} else {
