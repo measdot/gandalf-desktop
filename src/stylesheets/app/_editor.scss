@@ -14,10 +14,10 @@ $heading-height: 75px;
 #editor-title-bar {
   width: 100%;
 
-  padding-top: 14px;
-  padding-left: 14px;
-  padding-bottom: 10px;
-  padding-right: 10px;
+  padding-top: 15px;
+  padding-left: 5px;
+  padding-bottom: 2px;
+  padding-right: 5px;
 
   background-color: white;
   border-bottom: none;
@@ -37,7 +37,7 @@ $heading-height: 75px;
       float: left;
       text-overflow:ellipsis;
       width: 100%;
-      font-weight: bold;
+      font-weight: normal;
       border: none;
       outline: none;
       background-color: transparent;

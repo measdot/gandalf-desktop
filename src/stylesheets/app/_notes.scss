@@ -16,7 +16,7 @@
   }
 
   #notes-title-bar {
-    padding-top: 16px;
+    //padding-top: 16px;
     font-weight: normal;
     font-size: 18px;
 
@@ -141,8 +141,8 @@
     }
 
     &.selected {
-      background-color: $blue-color;
-      color: white;
+      background-color: #f6f6f6;
+      color: black;
 
       .pinned {
         color: white;

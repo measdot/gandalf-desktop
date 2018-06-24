@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Insert this line above script imports  -->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+	<link rel="stylesheet" type="text/css" href="http://w2ui.com/src/w2ui-1.5.rc1.min.css" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://w2ui.com/src/w2ui-1.5.rc1.min.js"></script>
+
+	<!-- Insert this line after script imports -->
+	<script>if (window.module) module = window.module;</script>
 
 </head>
 <body>
@@ -11,7 +20,7 @@
 			<div class="content " id="tags-content">
 				<div class="section-title-bar" id="tags-title-bar">
 					<div class="section-title-bar-header">
-						<div class="title">Categouries</div>
+						<div class="title">Tags</div>
 						<div class="add-button" id="tag-add-button" title="Create a new tag">+</div>
 					</div>
 				</div>
@@ -60,69 +69,32 @@
 			<div class="content">
 				<div class="section-title-bar" id="notes-title-bar">
 					<div class="padded">
-						<div class="section-title-bar-header">
-							<div class="title ">All Services</div>
-							<div class="add-button" id="notes-add-button" title="Create a new note in the selected tag">+</div>
-						</div>
+						<!--<div class="section-title-bar-header">-->
+							<!--<div class="title ">All</div>-->
+							<!--<div class="add-button" id="notes-add-button" title="Create a new note in the selected tag">+</div>-->
+						<!--</div>-->
 						<div class="filter-section" role="search">
 							<input class="filter-bar mousetrap " id="search-bar" lowercase="true" placeholder="Search" select-on-click="true" title="Searches notes in the currently selected tag"></div>
 					</div>
-					<div class="sn-component" id="notes-menu-bar">
-						<div class="app-bar no-edges">
-							<div class="left">
-								<div class="item">
-									<div class="column">
-										<div class="label">Options</div>
-									</div>
-									<div class="column">
-										<div class="sublabel "> Date Modified | + Archived</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<!--<div class="sn-component" id="notes-menu-bar">-->
+						<!--<div class="app-bar no-edges">-->
+							<!--<div class="left">-->
+								<!--<div class="item">-->
+									<!--<div class="column">-->
+										<!--<div class="label">Options</div>-->
+									<!--</div>-->
+									<!--<div class="column">-->
+										<!--<div class="sublabel "> Date Modified | + Archived</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
 				</div>
 				<div class="scrollable">
 					<div can-load="true" class="infinite-scroll" id="notes-scrollable" infinite-scroll="ctrl.paginate()"
 					     threshold="200">
-						<div class="note selected">
-							<div class="tags-string ">
-								<div class="faded ">#asd</div>
-							</div>
-							<div class="name ">New Note 1</div>
-						</div>
-						<div class="note ">
-							<div class="tags-string ">
-								<div class="faded ">#asdasd</div>
-							</div>
-							<div class="name ">asdfghj</div>
-						</div>
-						<div class="note ">
-							<div class="tags-string ">
-								<div class="faded ">#asdasd</div>
-							</div>
-							<div class="name ">dfghjk</div>
-						</div>
-						<div class="note ">
-							<div class="tags-string ">
-								<div class="faded ">#asdasd</div>
-							</div>
-							<div class="name ">New Note 2</div>
-						</div>
-						<div class="note ">
-							<div class="tags-string ">
-								<div class="faded "></div>
-							</div>
-							<div class="name ">New Note 3</div>
-						</div>
-						<div class="note ">
-							<div class="archived tinted "><i class="icon ion-ios-box"></i><strong
-								class="medium-text">Archived</strong></div>
-							<div class="tags-string ">
-								<div class="faded "></div>
-							</div>
-							<div class="name ">New Note 2</div>
-						</div>
+						<div id="grid" style="width: 100%; height: 100%;"></div>
 					</div>
 				</div>
 			</div>
@@ -134,42 +106,47 @@
 		<div aria-label="Note" class="section editor " id="editor-column" note="selectedNote" remove="deleteNote"
 		     save="saveNote" update-tags="updateTagsForNote">
 			<div class="sn-component"></div>
+			<!--<div id="toolbar" style="padding: 4px; border: 1px solid #dfdfdf; border-radius: 3px"></div>-->
+			<!--<div class="sn-component ">-->
+				<!--<div class="app-bar no-edges">-->
+					<!--<div class="left">-->
+						<!--<div class="item" click-outside="ctrl.showMenu=false;" is-open="ctrl.showMenu">-->
+							<!--<div class="label">Options</div>-->
+						<!--</div>-->
+						<!--<div class="item" click-outside="ctrl.showEditorMenu=false;" is-open="ctrl.showEditorMenu">-->
+							<!--<div class="label">Editor</div>-->
+						<!--</div>-->
+						<!--<div class="item" click-outside="ctrl.showExtensions=false;" is-open="ctrl.showExtensions">-->
+							<!--<div class="label">Actions</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
 			<div class="section-title-bar" id="editor-title-bar">
-				<div class="title"><input class="input " id="note-title-editor" select-on-click="true"></div>
+				<div id="toolbar" style="padding: 4px; border: 1px solid #dfdfdf; border-radius: 3px"></div>
+				<!--<div class="title"><input class="input " id="note-title-editor" select-on-click="true" value="Create Ticket"></div>-->
 				<div id="save-status" class=""></div>
-				<div class="editor-tags"><input class="tags-input " placeholder="#tags" spellcheck="false" type="text"></div>
+				<!--<div class="editor-tags">-->
+					<!--<input class="tags-input " disabled placeholder="#prt-works" spellcheck="false" type="text">-->
+				<!--</div>-->
 			</div>
-			<div class="sn-component ">
-				<div class="app-bar no-edges">
-					<div class="left">
-						<div class="item" click-outside="ctrl.showMenu=false;" is-open="ctrl.showMenu">
-							<div class="label">Options</div>
-						</div>
-						<div class="item" click-outside="ctrl.showEditorMenu=false;" is-open="ctrl.showEditorMenu">
-							<div class="label">Editor</div>
-						</div>
-						<div class="item" click-outside="ctrl.showExtensions=false;" is-open="ctrl.showExtensions">
-							<div class="label">Actions</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="editor-content " id="editor-content" style="left: 0px; width: 100%; flex-basis: 100%;">
-				<panel-resizer class="left hoverable" control="ctrl.resizeControl" hoverable="true" min-width="300"
-				               on-resize-finish="ctrl.onPanelResizeFinish" panel-id="'editor-content'" property="'left'">
-					<div class="panel-resizer-column"></div>
-				</panel-resizer>
-				<textarea class="editable " dir="auto" id="note-text-editor" spellcheck="true"
-				          style="font-family: monospace;"></textarea>
-				<panel-resizer control="ctrl.resizeControl" hoverable="true" min-width="300"
-				               on-resize-finish="ctrl.onPanelResizeFinish" panel-id="'editor-content'" property="'right'"
-				               class=" hoverable">
-					<div class="panel-resizer-column"></div>
-				</panel-resizer>
-			</div>
-			<div id="editor-pane-component-stack">
-				<div class="sn-component"></div>
-			</div>
+			<div id="tabs" style="width: 100%;"></div>
+			<!--<div class="editor-content " id="editor-content" style="left: 0px; width: 100%; flex-basis: 100%;">-->
+				<!--<panel-resizer class="left hoverable" control="ctrl.resizeControl" hoverable="true" min-width="300"-->
+				               <!--on-resize-finish="ctrl.onPanelResizeFinish" panel-id="'editor-content'" property="'left'">-->
+					<!--<div class="panel-resizer-column"></div>-->
+				<!--</panel-resizer>-->
+				<!--<textarea class="editable " dir="auto" id="note-text-editor" spellcheck="true"-->
+				          <!--style="font-family: monospace;"></textarea>-->
+				<!--<panel-resizer control="ctrl.resizeControl" hoverable="true" min-width="300"-->
+				               <!--on-resize-finish="ctrl.onPanelResizeFinish" panel-id="'editor-content'" property="'right'"-->
+				               <!--class=" hoverable">-->
+					<!--<div class="panel-resizer-column"></div>-->
+				<!--</panel-resizer>-->
+			<!--</div>-->
+			<!--<div id="editor-pane-component-stack">-->
+				<!--<div class="sn-component"></div>-->
+			<!--</div>-->
 		</div>
 	</div>
 	<!--<div class="sn-component ">-->
