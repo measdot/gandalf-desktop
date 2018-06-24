@@ -30,6 +30,8 @@ if (env.name !== "production") {
   app.setPath("userData", `${userDataPath} (${env.name})`);
 }
 
+require('electron-reload')(__dirname);
+
 app.on("ready", () => {
   setApplicationMenu();
 

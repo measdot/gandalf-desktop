@@ -1,0 +1,50 @@
+.sn-component {
+
+  .notification {
+    &.unpadded {
+      padding: 0;
+      padding-bottom: 0 !important;
+      padding-top: 0;
+    }
+
+    .padded-row {
+      padding: 10px 12px;
+    }
+
+    .bordered-row {
+      border-bottom: 1px solid rgba(black, 0.1);
+      border-top: 1px solid rgba(black, 0.1);
+    }
+  }
+
+
+
+}
+
+.panel {
+  color: black;
+
+  .header {
+    .close-button {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  input {
+    min-height: 39px;
+  }
+
+
+  .button-group.stretch {
+    .button:not(.featured) {
+      // Default buttons that are not featured and stretched should have larger vertical padding
+      padding: 9px;
+    }
+  }
+
+  a {
+    color: $blue-color;
+  }
+}

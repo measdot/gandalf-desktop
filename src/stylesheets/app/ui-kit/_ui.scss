@@ -1,0 +1,418 @@
+.red {
+  color: $danger-color;
+}
+
+.tinted {
+  color: $tint-color;
+}
+
+.selectable {
+  user-select: text !important;
+  -ms-user-select: text !important;
+  -moz-user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.9rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 0.95rem;
+  line-height: 1.4rem;
+}
+
+h5 {
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+a {
+  cursor: pointer;
+
+  &.disabled {
+    color: $section-border-color;
+  }
+}
+
+.wrap {
+  word-wrap: break-word;
+}
+
+* {
+
+    &.info {
+      color: $tint-color;
+    }
+
+    &.warning {
+      color: $warning-color;
+    }
+
+    &.danger {
+      color: $danger-color;
+    }
+
+    &.success {
+      color: $success-color;
+    }
+
+    &.info-i {
+      color: $tint-color !important;
+    }
+
+    &.warning-i {
+      color: $warning-color !important;
+    }
+
+    &.danger-i {
+      color: $danger-color !important;
+    }
+
+    &.success-i {
+      color: $success-color !important;
+    }
+
+    &.clear {
+      background-color: transparent;
+      border: none;
+    }
+}
+
+.center-text {
+  text-align: center !important;
+  justify-content: center !important;
+}
+
+p {
+  margin: 0.5rem 0;
+}
+
+
+input {
+  box-sizing: border-box;
+  padding: 0.75rem 0.8rem;
+  margin: 0.30rem 0;
+  border-radius: 3px;
+  border: 1px solid lighten($section-border-color, 1.5%);
+  font-size: 1.1rem;
+  width: 100%;
+  outline: 0;
+  resize: none;
+
+  &.info {
+    border-color: $tint-color;
+    background-color: transparent;
+    color: $tint-color;
+
+    &::-webkit-input-placeholder {
+      color: rgba($tint-color, 0.5);
+    }
+  }
+}
+
+label {
+  margin: 0.7rem 0;
+  display: block;
+  font-size: 1.1rem;
+}
+
+label input[type='checkbox'], input[type='radio'] {
+  width: auto;
+  margin-right: 0.45rem; /* Space after checkbox */
+  vertical-align: middle;
+}
+
+.horizontal-group {
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+
+    &:not(:first-child) {
+      margin-left: 0.9rem;
+    }
+  }
+}
+
+.border-bottom {
+  border-bottom: 1px solid $section-border-color;
+}
+
+.input-group {
+  @extend .horizontal-group;
+}
+
+.checkbox-group {
+  padding-top: 0.5rem;
+  padding-bottom: 0.3rem;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $placeholder-color;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $placeholder-color;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $placeholder-color;
+}
+
+.button-group {
+  &.stretch {
+    display: flex;
+    width: 100%;
+    .button {
+      display: block;
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+  .button {
+    display: inline-block;
+    vertical-align: middle;
+    // margin-bottom: 5px;
+    &:not(:last-child) {
+      margin-right: 5px;
+      &.featured {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+
+$button-border-radius: 3px;
+
+.segmented-buttons {
+  display: flex;
+  flex-direction: row;
+
+  .button {
+    border-radius: 0;
+    white-space: nowrap;
+
+    &:not(:last-child) {
+      border-right: none;
+    }
+
+    &:first-child {
+      border-top-left-radius: $button-border-radius;
+      border-bottom-left-radius: $button-border-radius;
+      border-right: none;
+    }
+
+    &:last-child {
+      border-top-right-radius: $button-border-radius;
+      border-bottom-right-radius: $button-border-radius;
+    }
+    margin: 0;
+  }
+}
+
+.box-group {
+  .box {
+    display: inline-block;
+    // margin-bottom: 5px;
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+}
+
+a.button {
+  text-decoration: none;
+}
+
+.button {
+  display: table;
+  border-radius: $button-border-radius;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid;
+
+  .label {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+  }
+
+  &.big {
+    font-size: 1.1rem;
+    padding: 0.7rem 2.5rem;
+  }
+}
+
+.box {
+  @extend .button;
+  padding: 2.5rem 1.5rem;
+}
+
+@mixin ui-rect($color, $hoverable) {
+  background-color: rgba($color, 0.1);
+  border-color: $color;
+  color: $color;
+
+  @if $hoverable == true {
+    &:hover {
+      background-color: lighten($color, 48%);
+      color: lighten($color, 3%);
+    }
+  }
+
+
+  &.featured {
+    background-color: $color;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.1rem;
+
+    &:hover {
+      background-color: lighten($color, 8%);
+    }
+  }
+}
+
+.button.default, .box.default, .circle.default {
+  @include ui-rect(darken($default-color, 42%), true);
+}
+
+.button.info, .box.info, .circle.info {
+  @include ui-rect($tint-color, true);
+}
+
+.button.warning, .box.warning, .circle.warning {
+  @include ui-rect($warning-color, true);
+}
+
+.button.danger, .box.danger, .circle.danger {
+  @include ui-rect($danger-color, true);
+}
+
+.button.success, .box.success, .circle.success {
+  @include ui-rect($success-color, true);
+}
+
+.notification.default {
+  background-color: $default-color;
+  border-color: $section-border-color;
+}
+
+.notification.info {
+  @include ui-rect($tint-color, false);
+}
+
+.notification.warning {
+  @include ui-rect($warning-color, false);
+}
+
+.notification.danger {
+  @include ui-rect($danger-color, false);
+}
+
+.notification.success {
+  @include ui-rect($success-color, false);
+}
+
+.notification {
+  border: 1px solid;
+  padding: 1.1rem 1rem;
+  margin: 1.4rem 0;
+  text-align: left;
+  border-radius: 0.2rem;
+  cursor: default;
+
+  &.one-line {
+    padding: 0rem 0.4rem;
+  }
+
+  &.stretch {
+    width: 100%;
+  }
+
+  &.dashed {
+    border-style: dashed;
+  }
+
+  .text {
+    line-height: 1.5rem;
+    font-size: 1.05rem;
+    text-align: left;
+    font-weight: normal;
+  }
+}
+
+.circle {
+  @extend .button;
+
+  border-color: $section-border-color;
+  background-color: $default-color;
+
+  padding: 0;
+  border-radius: 50%;
+
+  &.small {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+.spinner {
+  border: 1px solid #515263;
+  border-radius: 50%;
+  animation: rotate 0.8s infinite linear;
+  border-right-color: transparent;
+
+  &.small {
+    width: 12px;
+    height: 12px;
+  }
+
+  &.info {
+    border-color: $tint-color;
+    border-right-color: transparent;
+  }
+
+  &.warning {
+    border-color: $warning-color;
+    border-right-color: transparent;
+  }
+
+  &.danger {
+    border-color: $danger-color;
+    border-right-color: transparent;
+  }
+
+  &.success {
+    border-color: $success-color;
+    border-right-color: transparent;
+  }
+}
+
+@keyframes rotate {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
