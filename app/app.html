@@ -8,6 +8,9 @@
 	<script type="text/javascript" src="http://w2ui.com/src/w2ui-1.5.rc1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://w2ui.com/src/w2ui-1.5.rc1.min.css" />
 
+	<!--<link rel="stylesheet" href="tabs.css">-->
+	<!--<script src="tdi.tabs.js"></script>-->
+
 	<link href="https://unpkg.com/ionicons@4.2.0/dist/css/ionicons.min.css" rel="stylesheet">
 
 	<!-- Insert this line after script imports -->
@@ -16,13 +19,12 @@
 <body>
 <div class="main-ui-view">
 	<div class="app">
-		<div aria-label="Tags" class="section tags " id="tags-column" add-new="tagsAddNew" all-tag="allTag" archive-tag="archiveTag" remove-tag="removeTag" save="tagsSave" selection-made="tagsSelectionMade" tags="tags"will-select="tagsWillMakeSelection">
-
-			<div class="content " id="tags-content">
+		<div aria-label="Tags" class="section tags">
+			<div class="content">
 				<div class="section-title-bar" id="tags-title-bar">
 					<div class="section-title-bar-header">
 						<div class="title">Services</div>
-						<div class="add-button" id="tag-add-button" title="Create a new tag">+</div>
+						<div class="add-button" title="Create a new tag">+</div>
 					</div>
 				</div>
 				<div class="scrollable">
@@ -66,149 +68,45 @@
 					</div>
 				</div>
 			</div>
-			<panel-resizer collapsable="true" control="ctrl.panelController" hoverable="true"
-			               on-resize-finish="ctrl.onPanelResize" panel-id="'tags-column'" class=" hoverable">
-				<div class="panel-resizer-column"></div>
-			</panel-resizer>
 		</div>
-		<div aria-label="Notes" class="section notes " id="notes-column" add-new="notesAddNew"
-		     selection-made="notesSelectionMade" tag="selectedTag">
+		<div aria-label="Notes" class="section notes">
 			<div class="content">
-				<div class="section-title-bar" id="notes-title-bar">
+				<div class="section-title-bar">
 					<div class="padded">
-						<!--<div class="section-title-bar-header">-->
-							<!--<div class="title ">All</div>-->
-							<!--<div class="add-button" id="notes-add-button" title="Create a new note in the selected tag">+</div>-->
-						<!--</div>-->
 						<div class="filter-section" role="search">
-							<input class="filter-bar mousetrap " id="search-bar" lowercase="true" placeholder="Search" select-on-click="true" title="Searches notes in the currently selected tag"></div>
+							<input class="filter-bar" placeholder="Search" title="Searches services in the currently selected tag">
+						</div>
 					</div>
-					<!--<div class="sn-component" id="notes-menu-bar">-->
-						<!--<div class="app-bar no-edges">-->
-							<!--<div class="left">-->
-								<!--<div class="item">-->
-									<!--<div class="column">-->
-										<!--<div class="label">Options</div>-->
-									<!--</div>-->
-									<!--<div class="column">-->
-										<!--<div class="sublabel "> Date Modified | + Archived</div>-->
-									<!--</div>-->
-								<!--</div>-->
-							<!--</div>-->
-						<!--</div>-->
-					<!--</div>-->
 				</div>
 				<div class="scrollable">
-					<div can-load="true" class="infinite-scroll" id="notes-scrollable" infinite-scroll="ctrl.paginate()"
-					     threshold="200">
+					<div class="infinite-scroll">
 						<div id="grid" style="width: 100%; height: 100%;"></div>
 					</div>
 				</div>
 			</div>
-			<panel-resizer collapsable="true" control="ctrl.panelController" hoverable="true"
-			               on-resize-finish="ctrl.onPanelResize" panel-id="'notes-column'" class=" hoverable">
-				<div class="panel-resizer-column"></div>
-			</panel-resizer>
 		</div>
-		<div aria-label="Note" class="section editor " id="editor-column" note="selectedNote" remove="deleteNote"
-		     save="saveNote" update-tags="updateTagsForNote">
-			<div class="sn-component"></div>
-			<!--<div id="toolbar" style="padding: 4px; border: 1px solid #dfdfdf; border-radius: 3px"></div>-->
-			<!--<div class="sn-component ">-->
-				<!--<div class="app-bar no-edges">-->
-					<!--<div class="left">-->
-						<!--<div class="item" click-outside="ctrl.showMenu=false;" is-open="ctrl.showMenu">-->
-							<!--<div class="label">Options</div>-->
-						<!--</div>-->
-						<!--<div class="item" click-outside="ctrl.showEditorMenu=false;" is-open="ctrl.showEditorMenu">-->
-							<!--<div class="label">Editor</div>-->
-						<!--</div>-->
-						<!--<div class="item" click-outside="ctrl.showExtensions=false;" is-open="ctrl.showExtensions">-->
-							<!--<div class="label">Actions</div>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
+		<div aria-label="Note" class="section editor">
 			<div class="section-title-bar" id="editor-title-bar">
 				<div id="toolbar" style="padding: 4px; border: 1px solid #dfdfdf; border-radius: 3px"></div>
-				<!--<div class="title"><input class="input " id="note-title-editor" select-on-click="true" value="Create Ticket"></div>-->
-				<div id="save-status" class=""></div>
-				<!--<div class="editor-tags">-->
-					<!--<input class="tags-input " disabled placeholder="#prt-works" spellcheck="false" type="text">-->
-				<!--</div>-->
 			</div>
-			<div id="tabs" style="width: 100%;"></div>
-			<!--<div class="editor-content " id="editor-content" style="left: 0px; width: 100%; flex-basis: 100%;">-->
-				<!--<panel-resizer class="left hoverable" control="ctrl.resizeControl" hoverable="true" min-width="300"-->
-				               <!--on-resize-finish="ctrl.onPanelResizeFinish" panel-id="'editor-content'" property="'left'">-->
-					<!--<div class="panel-resizer-column"></div>-->
-				<!--</panel-resizer>-->
-				<!--<textarea class="editable " dir="auto" id="note-text-editor" spellcheck="true"-->
-				          <!--style="font-family: monospace;"></textarea>-->
-				<!--<panel-resizer control="ctrl.resizeControl" hoverable="true" min-width="300"-->
-				               <!--on-resize-finish="ctrl.onPanelResizeFinish" panel-id="'editor-content'" property="'right'"-->
-				               <!--class=" hoverable">-->
-					<!--<div class="panel-resizer-column"></div>-->
-				<!--</panel-resizer>-->
-			<!--</div>-->
-			<!--<div id="editor-pane-component-stack">-->
-				<!--<div class="sn-component"></div>-->
-			<!--</div>-->
+
+			<div data-tabs id="tabs" style="width: 100%;"></div>
+			<div data-tabs-content class="tabs-content"></div>
+
 		</div>
 	</div>
-	<!--<div class="sn-component ">-->
-		<!--<div class="app-bar no-edges" id="footer-bar">-->
-			<!--<div class="left">-->
-				<!--<div class="item" click-outside="ctrl.showAccountMenu=false;" is-open="ctrl.showAccountMenu">-->
-					<!--<div class="column">-->
-						<!--<div class="circle small info"></div>-->
-					<!--</div>-->
-					<!--<div class="column">-->
-						<!--<div class="label title">Account</div>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="item"><a class="no-decoration label title" href="https://standardnotes.org/help" target="_blank">Help</a>-->
-				<!--</div>-->
-				<!--<div class="item border"></div>-->
-				<!--<div class="item ">-->
-					<!--<div class="column">-->
-						<!--<div class="label ">Extensions</div>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="right">-->
-				<!--<div class="item no-pointer ">-->
-					<!--<div class="label subtle ">Last refreshed 06/23/2018 4:48 PM</div>-->
-				<!--</div>-->
-				<!--<div class="item ">-->
-					<!--<div class="label">Refresh</div>-->
-				<!--</div>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</div>-->
+
 	<div class="sn-component">
-		<div class="app-bar" id="app-bar">
+		<div class="app-bar no-edges" id="app-bar">
 			<div class="left">
+
 				<div class="item">
-					<div class="column">
-						<div class="circle small success"></div>
-					</div>
-					<div class="column">
-						<div class="label">Account</div>
-					</div>
-					<div class="column">
-						<div class="sublabel">Signed In</div>
+					<div class="label">
+						Refresh
 					</div>
 				</div>
-				<div class="item">
-					<div class="label">Extensions</div>
-				</div>
-				<div class="item">
-					<div class="label">Help</div>
-				</div>
-				<div class="item border"></div>
-				<div class="item">
-					<div class="label">ProLink</div>
+				<div class="item no-pointer">
+					<div class="label subtle">Last Refreshed 3s Ago</div>
 				</div>
 			</div>
 			<div class="center">
@@ -217,19 +115,29 @@
 				</div>
 			</div>
 			<div class="right">
-				<div class="item no-pointer">
-					<div class="label subtle">Last Refreshed 3s Ago</div>
-				</div>
 				<div class="item">
-					<div class="label">
-						Refresh
+					<div class="label">Help</div>
+				</div>
+				<div class="item border"></div>
+				<div class="item" id="bug">
+					<div class="label">Report Issue</div>
+				</div>
+				<div class="item border"></div>
+				<div class="item">
+					<div class="column">
+						<div class="circle small success"></div>
+					</div>
+					<div class="column">
+						<div class="label">Account</div>
+					</div>
+					<div class="column">
+						<div class="sublabel">Please update</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div id="browser-voice-control"></div>
 </body>
 <script src="app.js"></script>
 </html>

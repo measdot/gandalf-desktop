@@ -16,13 +16,13 @@ $(function () {
                 ]
             },
             { type: 'break' },
-            { type: 'menu-check', id: 'item3', text: 'Close tab', icon: 'icon ion-md-close',
+            { type: 'menu-check', id: 'item3', text: 'Close tab(s)', icon: 'icon ion-md-close',
                 selected: ['id3', 'id4'],
                 onRefresh: function (event) {
                     event.item.count = event.item.selected.length;
                 },
                 items: [
-                    { id: 'id1', text: 'Tab 1', icon: 'fa-camera' },
+                    { id: 'id1', text: 'Current', icon: 'fa-camera' },
                     { id: 'id2', text: 'Tab 2', icon: 'fa-picture' },
                     { id: 'id3', text: 'Tab 3', icon: 'fa-glass', count: 12 },
                     { text: '--' },

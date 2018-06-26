@@ -653,6 +653,10 @@
     "@webassemblyjs/wast-parser" "1.5.12"
     long "^3.2.0"
 
+Tabby@cferdinandi/tabby:
+  version "11.2.0"
+  resolved "https://codeload.github.com/cferdinandi/tabby/tar.gz/24530785fe78b5e6747781baec7390d2b9caaa56"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
