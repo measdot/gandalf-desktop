@@ -7,6 +7,7 @@ const config ={
 		show: {
 			footer        : true,
 			lineNumbers    : true,
+			toolbar:true
 		},
 		sortData: [ { field: 'service', direction: 'asc' } ],
 		columns: [
