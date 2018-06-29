@@ -1,13 +1,14 @@
 const tabs = require("./tabs");
 
-$(function () {
-	$('#grid').w2grid({
+
+const config ={
+	grid:{
 		name: 'grid',
 		show: {
 			footer        : true,
 			lineNumbers    : true,
 		},
-		sortData: [ { field: 'lname', direction: 'asc' } ],
+		sortData: [ { field: 'service', direction: 'asc' } ],
 		columns: [
 			{ field: 'service', caption: 'Services tagged #prt-works, double click on any to open', size: '30%', sortable: true },
 		],
@@ -27,12 +28,15 @@ $(function () {
 
 					const sel_record = grid.get(sel_rec_ids[0]);
 					if (tabs.tabExists(sel_record.recid)) {
-						tabs.select(sel_record.recid);
+						tabs.select(
+							sel_record.recid
+						);
 					} else {
-							tabs.add({
-								id:sel_record.recid,
-								caption:sel_record.service
-							});
+						tabs.add({
+							id:sel_record.recid,
+							caption:sel_record.service,
+							closable:true
+						});
 					}
 
 				} else {
@@ -41,6 +45,8 @@ $(function () {
 
 			}
 		}
-	});
-});
+	}
+};
 
+tabs.init();
+$('#grid').w2grid(config.grid);

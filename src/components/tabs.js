@@ -1,77 +1,82 @@
 import tabby from "Tabby";
-
-/**
- *
- * @param newTab
- */
-function addTab(newTab) {
-
-	const closable = (typeof newTab.closable !== 'undefined') ? newTab.closable : true;
-	var tabContent = (typeof newTab.content !== 'undefined') ? newTab.content : false;
-
-	// add new tab to tab strip
-	instance.add({id: newTab.id, caption: newTab.caption, closable: closable});
-
-	// add new tab content panel
-	if(! tabContent){
-		tabContent = '<div data-tabs-pane class="tabs-pane" id="tab'+ newTab.id +'" >'+ newTab.caption +'</div>';
-	}
-	$('[data-tabs-content]').append(tabContent);
-
-	//select the newly added tab
-	selectTab(newTab.id);
-
-	tabby.init();
-}
-
-/**
- *
- * @param tabId
- */
-function selectTab(tabId) {
-	instance.select(tabId);
-	tabby.toggleTab( '#tab'+tabId );
-}
+const pug = require('pug');
 
 
-/**
- *
- * @type {{name: string, active: string, onClick: config.onClick, onClose: config.onClose}}
- */
+let pStyle = 'border: 1px solid #dfdfdf; padding: 5px;';
+
 const config = {
-	name: 'tabs',
-	active: 'dashboard',
-	onClick: function (event) {
-		tabby.toggleTab("#tab"+event.target);
+	tabs: {
+		name: 'tabs',
+		active: 'dashboard',
+		onClick: function (event) {
+			module.exports.select(event.target);
+		},
+		onClose: function (event) {
+			$('#tab'+event.target).remove();
+			module.exports.select('dashboard');
+		}
 	},
-	onClose: function (event) {
-		$('#tab'+event.target).remove();
-		selectTab("dash");
+	layout:{
+		name: 'layout',
+		padding: 2,
+		panels: [
+			{ type: 'main', size: '300', resizable: true, minSize: 200, style: pStyle, title:'Action' },
+			{ type: 'preview', size: '150', resizable: true,minSize: 50,style: pStyle, title:'Logs' }
+		]
+	},
+	dashboard:{
+		id:"dashboard",caption:"Dashboard",closable:false,
 	}
 };
-
-/**
- *
- * @type {jQuery}
- */
-const instance = $('#tabs').w2tabs(config);
-addTab({id:"dash",caption:"Dashboard",closable:false,
-	// content:' <p>Testing screenshots in Electron :3</p>\n' +
-	// '        <img id="my-preview"/>\n' +
-	// '        <input id="trigger" value="Fullscreen screenshot" type="button"/>\n'
-});
-
-/**
- *
- * @type {{select: selectTab, add: addTab, tabExists: (function(*=): *)}}
- */
+// Compile the source code
+const compiledFunction = pug.compileFile('src/templates/service.pug');
+console.log(compiledFunction({
+	id: 'dashboard'
+}));
 module.exports = {
-	select: selectTab,
-	add: addTab,
+	init: function(){
+		$('#tabs').w2tabs(config.tabs);
+		module.exports.add(config.dashboard);
+	},
+	select: function(tabId) {
+		w2ui[config.tabs.name].select(tabId);
+		tabby.toggleTab( '#tab'+tabId );
+	},
+
+	add: function (newTab) {
+
+		const closable = (typeof newTab.closable !== 'undefined') ? newTab.closable : true;
+		let tabContent = (typeof newTab.content !== 'undefined') ? newTab.content : false;
+
+		// add new tab to tab strip
+		w2ui[config.tabs.name].add({id: newTab.id, caption: newTab.caption, closable: closable});
+
+		// add new tab content panel
+		if(! tabContent){
+			tabContent =
+				'<div data-tabs-pane class="tabs-pane" id="tab'+ newTab.id +'" >'
+				+'<div id="layout" style="position: absolute; top: 85px; left: 5px; bottom: 5px; right: 5px;">'
+				+'<h1>'+newTab.caption+'</h1>'
+				+'</div>'
+				+'</div>';
+		}
+		$('[data-tabs-content]').append(tabContent);
+
+		//select the newly added tab
+		module.exports.select(newTab.id);
+
+		// initialize the action and logs panels for the tab
+		$('#layout').w2layout(config.layout);
+
+		tabby.init();
+	},
 	tabExists: function (tabId) {
-		return instance.get(tabId);
+		if ( config.tabs.name in w2ui){
+			return w2ui[config.tabs.name].get(tabId);
+		}
+		return false;
 	},
 	closeTab: function (tabIds) {
-		instance.remove(tabIds);
+		w2ui[config.tabs.name].remove(tabIds);
 	}
 };
