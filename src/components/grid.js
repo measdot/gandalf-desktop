@@ -49,5 +49,9 @@ const config ={
 	}
 };
 
-tabs.init();
-$('#grid').w2grid(config.grid);
+module.exports = {
+	init: function () {
+		// tabs.init();
+		return $().w2grid(config.grid);
+	}
+}
