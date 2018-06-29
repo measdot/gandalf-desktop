@@ -20,7 +20,7 @@ const config = {
 		padding: 2,
 		panels: [
 			{ type: 'main', size: '300', resizable: true, minSize: 200, style: pStyle, title:'Action' },
-			{ type: 'preview', size: '150', resizable: true,minSize: 50,style: pStyle, title:'Logs' }
+			{ type: 'preview', size: '150', resizable: true,minSize: 50,style: pStyle, title:'Logs', hidden:true }
 		]
 	},
 	dashboard:{
@@ -28,10 +28,7 @@ const config = {
 	}
 };
 // Compile the source code
-const compiledFunction = pug.compileFile('src/templates/service.pug');
-console.log(compiledFunction({
-	id: 'dashboard'
-}));
+const serviceTemplate = pug.compileFile('src/templates/service.pug');
 module.exports = {
 	init: function(){
 		$('#tabs').w2tabs(config.tabs);
@@ -50,7 +47,7 @@ module.exports = {
 		w2ui[config.tabs.name].add({id: newTab.id, caption: newTab.caption, closable: closable});
 
 		// add new tab content panel
-		$('[data-tabs-content]').append(compiledFunction(newTab));
+		$('[data-tabs-content]').append(serviceTemplate(newTab));
 
 		//select the newly added tab
 		module.exports.select(newTab.id);
