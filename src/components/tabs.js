@@ -17,7 +17,6 @@ const config = {
 		}
 	},
 	layout:{
-		name: 'layout',
 		padding: 2,
 		panels: [
 			{ type: 'main', size: '300', resizable: true, minSize: 200, style: pStyle, title:'Action' },
@@ -42,7 +41,6 @@ module.exports = {
 		w2ui[config.tabs.name].select(tabId);
 		tabby.toggleTab( '#tab'+tabId );
 	},
-
 	add: function (newTab) {
 
 		const closable = (typeof newTab.closable !== 'undefined') ? newTab.closable : true;
@@ -52,21 +50,14 @@ module.exports = {
 		w2ui[config.tabs.name].add({id: newTab.id, caption: newTab.caption, closable: closable});
 
 		// add new tab content panel
-		if(! tabContent){
-			tabContent =
-				'<div data-tabs-pane class="tabs-pane" id="tab'+ newTab.id +'" >'
-				+'<div id="layout" style="position: absolute; top: 85px; left: 5px; bottom: 5px; right: 5px;">'
-				+'<h1>'+newTab.caption+'</h1>'
-				+'</div>'
-				+'</div>';
-		}
-		$('[data-tabs-content]').append(tabContent);
+		$('[data-tabs-content]').append(compiledFunction(newTab));
 
 		//select the newly added tab
 		module.exports.select(newTab.id);
 
 		// initialize the action and logs panels for the tab
-		$('#layout').w2layout(config.layout);
+		config.layout.name= 'layout'+newTab.id;
+		$('#'+config.layout.name).w2layout(config.layout);
 
 		tabby.init();
 	},
