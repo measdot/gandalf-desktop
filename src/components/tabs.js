@@ -18,7 +18,7 @@ const config = {
 		padding: 2,
 		panels: [
 			{ type: 'main', size: '300', resizable: true, minSize: 200, style: pStyle, title:'Action' },
-			{ type: 'preview', size: '150', resizable: true,minSize: 50,style: pStyle, title:'Logs', hidden:true }
+			{ type: 'preview', size: '150', resizable: true,minSize: 50,style: pStyle, title:'Logs', hidden:false }
 		]
 	},
 	dashboard:{

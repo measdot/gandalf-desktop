@@ -1,5 +1,7 @@
 # Gandalf
 
+![HOME SCREEN](screens/gandalf-app-screen.png)
+
 
 Make sure you have [Node.js](https://nodejs.org) installed, then type the following commands known to every Node developer...
 ```

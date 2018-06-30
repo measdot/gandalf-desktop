@@ -1,3 +1,6 @@
+const bug = require('./bug')
+
+
 module.exports = {
     init: function () {
 			return $().w2toolbar({
@@ -36,8 +39,21 @@ module.exports = {
 					}
 				],
 				onClick:function (event) {
-					if(event.target === 'view-logs'){
-						w2ui['layout'+w2ui['tabs'].active].toggle('preview');
+
+					switch (event.target){
+						case 'view-logs':
+							var filename = '/Users/kumar/gandalf_app_capture_'+Date.now()+'.png';
+							bug(
+								{
+									filename:filename,
+									delay:'1'
+								},
+								function(data){
+									alert('Screenshot Saved to  file: '+ filename);
+								}
+							);
+							// w2ui['layout'+w2ui['tabs'].active].toggle('preview');
+							break;
 					}
 				}
 			});

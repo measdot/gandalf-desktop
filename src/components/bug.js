@@ -15,18 +15,18 @@ function screenshot (opt, cb) {
 	}, opt.delay)
 }
 
-document.getElementById("bug").addEventListener("click", function(){
-	var filename = '/Users/kumar/gandalf_app_capture_'+Date.now()+'.png';
-	screenshot(
-		{
-			filename:filename,
-			delay:'1'
-		},
-		function(data){
-			alert('Screenshot Saved to  file: '+ filename);
-		}
-	);
-},false);
+// document.getElementById("hello").addEventListener("click", function(){
+// 	var filename = '/Users/kumar/gandalf_app_capture_'+Date.now()+'.png';
+// 	screenshot(
+// 		{
+// 			filename:filename,
+// 			delay:'1'
+// 		},
+// 		function(data){
+// 			alert('Screenshot Saved to  file: '+ filename);
+// 		}
+// 	);
+// },false);
 
 
 
