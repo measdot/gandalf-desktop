@@ -8,12 +8,10 @@ const config = {
 		name: 'tabs',
 		active: 'dashboard',
 		onClick: function (event) {
-			module.exports.select(event.target);
+			module.exports.select(event.target,true);
 		},
 		onClose: function (event) {
-			w2ui['tabs'].remove(event.target);
-			w2ui['layout'+event.target].destroy();
-			module.exports.select('dashboard');
+			module.exports.closeTab(event.target);
 		}
 	},
 	layout:{
@@ -27,7 +25,7 @@ const config = {
 		id:"dashboard",caption:"Dashboard",closable:false, content:{action:'Dashboard action form',logs:'Dashboard log window'}
 	}
 };
-const serviceTemplate = pug.compileFile("src/templates/service.pug");
+const serviceTemplate = pug.compileFile('src/templates/service.pug');
 
 
 module.exports = {
@@ -37,9 +35,18 @@ module.exports = {
 		module.exports.add(config.dashboard);
 	},
 
-	select: function(tabId) {
-		w2ui[config.tabs.name].select(tabId);
-		console.log($('#tab'+tabId));
+	select: function(tabId, isClicked=false) {
+		/***
+		 * this is our go to method for making selecting a tab
+		 * this gets called even when we click on the tab
+		 * to avoid circular calling between events  onclick -> selctTab -> onclick -> ...
+		 * the isClicked param is introduced
+		 */
+		if(isClicked){
+			w2ui[config.tabs.name].select(tabId);
+		}else {
+			w2ui[config.tabs.name].click(tabId);
+		}
 		tabby.toggleTab( '#tab'+tabId );
 	},
 
@@ -79,6 +86,8 @@ module.exports = {
 	},
 
 	closeTab: function (tabId) {
-		w2ui[config.tabs.name].remove(tabId);
+		w2ui['tabs'].remove(tabId);
+		let prevTabId = ($('#tab'+tabId).prev().attr('id')).replace('tab','');
+		module.exports.select(prevTabId);
 	}
 };
