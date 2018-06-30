@@ -1,0 +1,43 @@
+[
+  {
+    "recid": "devbox", "service": "Devbox services",
+    "w2ui":
+    {
+      "children": [
+        { "recid": 1, "service": "Setup eC-website project environment"},
+        { "recid": 2, "service": "Setup eT-devbox project environment"}
+      ]
+    }
+  },
+  {
+    "recid": "windows-host", "service": "Windows host services",
+    "w2ui":
+    {
+      "children": [
+        { "recid": 3, "service": "Setup devbox virtual machine on windows"},
+        { "recid": 4, "service": "Setup software on brand new windows for associates"}
+      ]
+    }
+  },
+  {
+    "recid": "prt-development", "service": "PRT development services",
+    "w2ui":
+    {
+      "children": [
+        { "recid": 5, "service": "Create a merge request"},
+        { "recid": 6, "service": "Create a sprint ticket"},
+        { "recid": 7, "service": "Create a migration"},
+        { "recid": 8, "service": "Create a hot-fix ticket"}
+      ]
+    }
+  },
+  {
+    "recid": "ec-website", "service": "eC website service",
+    "w2ui":
+    {
+      "children": [
+        { "recid": 9, "service": "Send dev logs to elk@aws"}
+      ]
+    }
+  }
+]

@@ -3,7 +3,6 @@ const pug = require('pug');
 
 
 let pStyle = 'border: 1px solid #dfdfdf; padding: 5px;';
-
 const config = {
 	tabs: {
 		name: 'tabs',
@@ -12,7 +11,8 @@ const config = {
 			module.exports.select(event.target);
 		},
 		onClose: function (event) {
-			$('#tab'+event.target).remove();
+			w2ui['tabs'].remove(event.target);
+			w2ui['layout'+event.target].destroy();
 			module.exports.select('dashboard');
 		}
 	},
@@ -24,47 +24,61 @@ const config = {
 		]
 	},
 	dashboard:{
-		id:"dashboard",caption:"Dashboard",closable:false,
+		id:"dashboard",caption:"Dashboard",closable:false, content:{action:'Dashboard action form',logs:'Dashboard log window'}
 	}
 };
-// Compile the source code
-const serviceTemplate = pug.compileFile('src/templates/service.pug');
+const serviceTemplate = pug.compileFile("src/templates/service.pug");
+
+
 module.exports = {
+
 	init: function(){
 		$('#tabs').w2tabs(config.tabs);
 		module.exports.add(config.dashboard);
 	},
+
 	select: function(tabId) {
 		w2ui[config.tabs.name].select(tabId);
+		console.log($('#tab'+tabId));
 		tabby.toggleTab( '#tab'+tabId );
 	},
+
 	add: function (newTab) {
 
-		const closable = (typeof newTab.closable !== 'undefined') ? newTab.closable : true;
-		let tabContent = (typeof newTab.content !== 'undefined') ? newTab.content : false;
-
 		// add new tab to tab strip
-		w2ui[config.tabs.name].add({id: newTab.id, caption: newTab.caption, closable: closable});
+		w2ui[config.tabs.name].add(newTab);
 
 		// add new tab content panel
 		$('[data-tabs-content]').append(serviceTemplate(newTab));
+
+		/**
+		 * by initializing we get to  programmatically toggle the single tab contents in tabs content panel
+		 * by method toggleTab(tabId)
+		 * This would link the w2ui tabs to their corresponding tabs content
+		 */
+		tabby.init();
 
 		//select the newly added tab
 		module.exports.select(newTab.id);
 
 		// initialize the action and logs panels for the tab
-		config.layout.name= 'layout'+newTab.id;
+		config.layout.name = 'layout' + newTab.id;
 		$('#'+config.layout.name).w2layout(config.layout);
 
-		tabby.init();
+		// put the tab action panel contents
+		w2ui[config.layout.name].content('main', newTab.content.action)
+		w2ui[config.layout.name].content('preview', newTab.content.logs)
+
 	},
+
 	tabExists: function (tabId) {
 		if ( config.tabs.name in w2ui){
 			return w2ui[config.tabs.name].get(tabId);
 		}
 		return false;
 	},
-	closeTab: function (tabIds) {
-		w2ui[config.tabs.name].remove(tabIds);
+
+	closeTab: function (tabId) {
+		w2ui[config.tabs.name].remove(tabId);
 	}
 };

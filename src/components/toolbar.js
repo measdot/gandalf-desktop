@@ -31,12 +31,13 @@ module.exports = {
 						]
 					},
 					{ type: 'spacer' },
-					{ type: 'button',  id: 'view-logs',  text: 'view logs', icon: 'icon ion-md-clipboard' }
+					{
+						type: 'button',  id: 'view-logs',  text: 'view logs', icon: 'icon ion-md-clipboard'
+					}
 				],
 				onClick:function (event) {
-					console.log('EVENT: '+ event.type + ' TARGET: '+ event.target, event);
-					if(event.target == 'view-logs'){
-						w2ui['layout'+w2ui['tabs'].active].toggle('preview', window.instant)
+					if(event.target === 'view-logs'){
+						w2ui['layout'+w2ui['tabs'].active].toggle('preview');
 					}
 				}
 			});

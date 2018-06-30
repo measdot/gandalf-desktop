@@ -5,45 +5,42 @@ const config ={
 	grid:{
 		name: 'grid',
 		show: {
-			footer        : true,
-			lineNumbers    : true,
-			toolbar:true
+			footer : true,
+			toolbar: true
 		},
 		sortData: [ { field: 'service', direction: 'asc' } ],
 		columns: [
-			{ field: 'service', caption: 'Services tagged #prt-works, double click on any to open', size: '30%', sortable: true },
-		],
-		records: [
-			{ recid: 1, service: 'Create a merge request'},
-			{ recid: 2, service: 'Create a sprint ticket'},
-			{ recid: 3, service: 'Create a migration'},
-			{ recid: 4, service: 'Create a hotfix ticket'},
+			{ field: 'service', caption: 'Services ', size: '30%', sortable: true },
 		],
 		onDblClick: function(event) {
 			const grid = this;
 
-			event.onComplete = function() {
+			event.onComplete = function(event) {
+				if(! isNaN(event.recid)) {
+					const sel_rec_ids = grid.getSelection();
+					if (sel_rec_ids.length) {
 
-				const sel_rec_ids = grid.getSelection();
-				if (sel_rec_ids.length) {
+						const sel_record = grid.get(sel_rec_ids[0]);
+						if (tabs.tabExists(sel_record.recid)) {
+							tabs.select(
+								sel_record.recid
+							);
+						} else {
+							tabs.add({
+								id: sel_record.recid,
+								caption: sel_record.service,
+								closable: true,
+								content: {
+									action: sel_record.service + ' action form',
+									logs: sel_record.service + ' log window'
+								},
+							});
+						}
 
-					const sel_record = grid.get(sel_rec_ids[0]);
-					if (tabs.tabExists(sel_record.recid)) {
-						tabs.select(
-							sel_record.recid
-						);
 					} else {
-						tabs.add({
-							id:sel_record.recid,
-							caption:sel_record.service,
-							closable:true
-						});
+						console.log("Nothing selected!");
 					}
-
-				} else {
-					console.log("Nothing selected!");
 				}
-
 			}
 		}
 	}
