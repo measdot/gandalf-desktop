@@ -7,8 +7,3 @@ import "./helpers/external_links";
 
 //app components
 import "./components/home"
-// import "./components/preferences"
-// import "./components/toolbar"
-// import "./components/grid"
-// import "./components/tabs"
-// import "./components/bug"

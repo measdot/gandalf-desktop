@@ -15,20 +15,6 @@ function screenshot (opt, cb) {
 	}, opt.delay)
 }
 
-// document.getElementById("hello").addEventListener("click", function(){
-// 	var filename = '/Users/kumar/gandalf_app_capture_'+Date.now()+'.png';
-// 	screenshot(
-// 		{
-// 			filename:filename,
-// 			delay:'1'
-// 		},
-// 		function(data){
-// 			alert('Screenshot Saved to  file: '+ filename);
-// 		}
-// 	);
-// },false);
-
-
 
 //on click of bugs
 // open a popup containing a report bug confirmation form with following inputs
