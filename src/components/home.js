@@ -3,6 +3,7 @@ const grid = require('./grid')
 const mainToolbar = require('./toolbar')
 const serviceTabs = require('./tabs')
 const serviceList = require('./services.json')
+const db = require('./db')
 
 $(function () {
 	var pstyle = 'border: 1px solid #dfdfdf; padding: 5px;';

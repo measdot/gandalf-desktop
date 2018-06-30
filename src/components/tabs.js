@@ -37,7 +37,7 @@ module.exports = {
 
 	select: function(tabId, isClicked=false) {
 		/***
-		 * this is our go to method for making selecting a tab
+		 * this is our go to method for selecting a tab
 		 * this gets called even when we click on the tab
 		 * to avoid circular calling between events  onclick -> selctTab -> onclick -> ...
 		 * the isClicked param is introduced

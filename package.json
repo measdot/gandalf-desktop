@@ -30,9 +30,10 @@
     "release": "npm test && webpack --config=build/webpack.app.config.js --env=production && electron-builder"
   },
   "dependencies": {
-    "Tabby": "cferdinandi/tabby",
+    "Tabby": "github:cferdinandi/tabby",
     "electron-reload": "^1.2.3",
     "fs-jetpack": "^1.0.0",
+    "nedb": "^1.8.0",
     "node-sass": "^4.9.0",
     "pug": "^2.0.3",
     "sass-loader": "^7.0.3"
