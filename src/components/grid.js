@@ -1,4 +1,5 @@
 const tabs = require("./tabs");
+const serviceList = require('./services.json')
 
 
 const config ={
@@ -6,7 +7,7 @@ const config ={
 		name: 'grid',
 		show: {
 			footer : true,
-			toolbar: true
+			// toolbar: true
 		},
 		sortData: [ { field: 'service', direction: 'asc' } ],
 		columns: [
@@ -45,10 +46,6 @@ const config ={
 		}
 	}
 };
-
-module.exports = {
-	init: function () {
-		// tabs.init();
-		return $().w2grid(config.grid);
-	}
-}
+$().w2grid(config.grid);
+w2ui['grid'].add(serviceList);
+module.exports =  w2ui['grid'];

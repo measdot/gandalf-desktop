@@ -5,14 +5,14 @@ const db = new DataStore({ filename:"db/config.db", autoload: true });
 // Adds a key value pair
 exports.add = function(key, value) {
 
-	// Create the person object
-	var person = {
+	// Create the config object
+	var config = {
 		"key": key,
 		"value": value
 	};
 
-	// Save the person to the database
-	db.insert(person, function(err, newDoc) {
+	// Save the config to the database
+	db.insert(config, function(err, newDoc) {
 		// Do nothing
 	});
 };

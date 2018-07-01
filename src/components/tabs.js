@@ -2,7 +2,6 @@ import tabby from "Tabby";
 const pug = require('pug');
 
 
-let pStyle = 'border: 1px solid #dfdfdf; padding: 5px;';
 const config = {
 	tabs: {
 		name: 'tabs',
@@ -17,15 +16,15 @@ const config = {
 	layout:{
 		padding: 2,
 		panels: [
-			{ type: 'main', size: '300', resizable: true, minSize: 200, style: pStyle, title:'Action' },
-			{ type: 'preview', size: '150', resizable: true,minSize: 50,style: pStyle, title:'Logs', hidden:false }
+			{ type: 'main', size: '300', resizable: true, minSize: 200},
+			{ type: 'preview', size: '150', resizable: true,minSize: 50,hidden:true }
 		]
 	},
 	dashboard:{
 		id:"dashboard",caption:"Dashboard",closable:false, content:{action:'Dashboard action form',logs:'Dashboard log window'}
 	}
 };
-const serviceTemplate = pug.compileFile('src/templates/service.pug');
+const serviceTemplate = pug.compileFile('src/templates/tab.pug');
 
 
 module.exports = {
