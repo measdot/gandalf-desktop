@@ -14,16 +14,16 @@ const config = {
 	panels: [
 		{ type: 'left', size: 300, minSize:250, style:mainLayoutStyle, resizable: true},
 		{ type: 'main', content: tabsTemplate(), style:mainLayoutStyle},
-		{ type: 'right', size: 350, minSize:350, style:mainLayoutStyle, resizable: true, content:preferencesTemplate()},
+		{ type: 'right', size: 350, minSize:350, style:mainLayoutStyle, hidden:true, resizable: false, content:preferencesTemplate()},
 		{ type: 'bottom', size: 35, resizable: false, style:mainLayoutStyle, toolbar: mainToolbar}
 	]
 };
 
 //init app layout
-$('#layout-home').w2layout(config);
+$('#'+config.name).w2layout(config);
 
 // init left panel content
-w2ui['layout-home'].content('left', grid);
+w2ui[config.name].content('left', grid);
 
 // init main panel content
 dashboard.init();

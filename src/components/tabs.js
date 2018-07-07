@@ -1,4 +1,4 @@
-import tabby from "Tabby";
+const tabby = require("Tabby") ;
 const pug = require('pug');
 
 
@@ -30,7 +30,7 @@ const serviceTemplate = pug.compileFile('src/templates/tab.pug');
 module.exports = {
 
 	init: function(){
-		$('#tabs').w2tabs(config.tabs);
+		$('#'+config.tabs.name).w2tabs(config.tabs);
 		module.exports.add(config.dashboard);
 	},
 
@@ -46,7 +46,9 @@ module.exports = {
 		}else {
 			w2ui[config.tabs.name].click(tabId);
 		}
+		w2ui['layout-home'].resize();
 		tabby.toggleTab( '#tab'+tabId );
+
 	},
 
 	add: function (newTab) {
