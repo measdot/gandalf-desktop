@@ -16,7 +16,7 @@ export const config = {
 		{ type: 'main', content: tabsTemplate(), style:mainLayoutStyle
 			,resizable: true
 		},
-		{ type: 'right', size: 250, minSize:250, style:mainLayoutStyle, hidden:true,
+		{ type: 'right', size: 250, minSize:250, hidden:false,
 			resizable: true,
 			title:'Preferences',
 			content:preferencesTemplate()

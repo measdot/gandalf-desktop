@@ -18,7 +18,7 @@ module.exports = {
 				}
 			},
 			{type: 'break', id: 'break0'},
-			{type: 'button', id: 'item7', caption: 'Logs', hint: 'toggle logs panel for current service'},
+			{type: 'button', id: 'item7', caption: 'Logs'},
 			{type: 'break', id: 'break2'},
 			{
 				type: 'html', id: 'item2',
@@ -31,7 +31,7 @@ module.exports = {
 			{type: 'spacer'},
 			{type: 'button', id: 'item3', caption: 'Report Bug'},
 			{type: 'break', id: 'break1'},
-			{type: 'button', id: 'item6', caption: 'Preferences', hint: 'toggle preferences panel'},
+			{type: 'button', id: 'item6', caption: 'Preferences'},
 		],
 		onClick: function (event) {
 
