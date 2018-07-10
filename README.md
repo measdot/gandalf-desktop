@@ -1,7 +1,8 @@
 # Gandalf
 
-![HOME SCREEN](screens/gandalf-app-screen.png)
-
+ Dark Theme             |  Light Theme
+:-------------------------:|:-------------------------:
+![](screens/dark.png)  |  ![](screens/light.png)
 
 Make sure you have [Node.js](https://nodejs.org) installed, then type the following commands known to every Node developer...
 ```

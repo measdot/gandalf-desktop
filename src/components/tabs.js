@@ -1,6 +1,6 @@
 const tabby = require("Tabby") ;
 const pug = require('pug');
-
+const home = require("./home");
 
 const config = {
 	tabs: {
@@ -17,11 +17,13 @@ const config = {
 		padding: 2,
 		panels: [
 			{ type: 'main', size: '300', resizable: true, minSize: 200},
-			{ type: 'preview', size: '150', resizable: true,minSize: 50,hidden:true }
+			{ type: 'preview', size: '150', resizable: true,minSize: 50,hidden:true,
+				// style:'background-color: #363F5D;',
+				title:'Logs'}
 		]
 	},
 	dashboard:{
-		id:"dashboard",caption:"Dashboard",closable:false, content:{action:'Dashboard action form',logs:'Dashboard log window'}
+		id:"dashboard",caption:"Dashboard",closable:false,content:{action:'Dashboard action form',logs:''}
 	}
 };
 const serviceTemplate = pug.compileFile('src/templates/tab.pug');
@@ -46,7 +48,7 @@ module.exports = {
 		}else {
 			w2ui[config.tabs.name].click(tabId);
 		}
-		w2ui['layout-home'].resize();
+		w2ui[home.config.name].resize();
 		tabby.toggleTab( '#tab'+tabId );
 
 	},

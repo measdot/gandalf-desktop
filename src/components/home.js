@@ -7,20 +7,32 @@ const preferences = require('./preferences')
 
 const tabsTemplate = pug.compileFile('src/templates/tabs.pug');
 const preferencesTemplate = pug.compileFile('src/templates/preferences.pug');
-var mainLayoutStyle = 'border:1px solid grey';
-const config = {
+var mainLayoutStyle = '';
+export const config = {
 	name: 'layout-home',
-	padding: 1,
 	panels: [
-		{ type: 'left', size: 300, minSize:250, style:mainLayoutStyle, resizable: true},
-		{ type: 'main', content: tabsTemplate(), style:mainLayoutStyle},
-		{ type: 'right', size: 350, minSize:350, style:mainLayoutStyle, hidden:true, resizable: false, content:preferencesTemplate()},
-		{ type: 'bottom', size: 35, resizable: false, style:mainLayoutStyle, toolbar: mainToolbar}
+		{ type: 'left', size: 250, minSize:250, style:mainLayoutStyle,
+			resizable: true},
+		{ type: 'main', content: tabsTemplate(), style:mainLayoutStyle
+			,resizable: true
+		},
+		{ type: 'right', size: 250, minSize:250, style:mainLayoutStyle, hidden:true,
+			resizable: true,
+			title:'Preferences',
+			content:preferencesTemplate()
+		},
+		{ type: 'bottom', size: 35,
+			resizable: false,
+			toolbar: mainToolbar
+		}
 	]
 };
 
 //init app layout
 $('#'+config.name).w2layout(config);
+
+//init toolbar tools
+$('#search-service').w2field('text');
 
 // init left panel content
 w2ui[config.name].content('left', grid);

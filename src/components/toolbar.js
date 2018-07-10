@@ -4,19 +4,19 @@ const bug = require('./bug')
 module.exports = {
 		name: 'toolbar',
 		items: [
+			{type: 'button', id: 'item8', caption: 'Add', hint: 'register a service of your own'},
+			{type: 'break', id: 'break3'},
 			{
 				type: 'html', id: 'item1',
 				html: function (item) {
 					var html =
 						'<div style="padding: 3px 10px;">' +
-						'    <input size="35" placeholder="Search by service name" onchange="var el = w2ui.toolbar.set(\'item5\', { value: this.value });" ' +
+						'    <input id="search-service" size="23" placeholder="Search by service name" onchange="var el = w2ui.toolbar.set(\'item5\', { value: this.value });" ' +
 						'         style="padding: 3px; border-radius: 2px; border: 1px solid silver" value="' + (item.value || '') + '"/>' +
 						'</div>';
 					return html;
 				}
 			},
-			{type: 'break', id: 'break3'},
-			{type: 'button', id: 'item8', caption: 'Add', hint: 'register a service of your own'},
 			{type: 'break', id: 'break0'},
 			{type: 'button', id: 'item7', caption: 'Logs', hint: 'toggle logs panel for current service'},
 			{type: 'break', id: 'break2'},
