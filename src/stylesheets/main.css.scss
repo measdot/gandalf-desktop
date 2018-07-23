@@ -1,5 +1,5 @@
 @import "tabby.css";
-@import "w2ui-dark.less";
+@import "w2ui.less";
 
 *{
   font-family: Verdana,Arial,sans-serif !important;
@@ -11,4 +11,7 @@
  height: 30px !important;
  padding: 5px !important;
  margin: 3px 0px !important;
+}
+.tab {
+ background: #F2F2F2;
 }

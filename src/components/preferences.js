@@ -18,13 +18,13 @@ module.exports = {
 			$('#default-user').w2field('text');
 		});
 		$('#preferences-form').w2form({
-			name: 'form',
+			name: 'preferences-form',
 			fields: [
-				{name: 'type', type:'radio', options: {
+				{name: 'theme', type:'radio', options: {
 						items: [{ id: 1, text: 'Top' }, { id: 2, text: 'Down' }] },
 					html:{
 						caption: 'Toolbar Position',style:style}},
-				{name: 'type', type:'radio', options: {
+				{name: 'toolbar', type:'radio', options: {
 						items: [{ id: 1, text: 'Dark' }, { id: 2, text: 'Light' }] },
 					html:{
 						caption: 'Select Theme',style:style}},

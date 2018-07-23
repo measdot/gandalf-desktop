@@ -7,7 +7,7 @@ const preferences = require('./preferences')
 
 const tabsTemplate = pug.compileFile('src/templates/tabs.pug');
 const preferencesTemplate = pug.compileFile('src/templates/preferences.pug');
-var mainLayoutStyle = '';
+var mainLayoutStyle = 'border: 1px solid #dfdfdf';
 export const config = {
 	name: 'layout-home',
 	panels: [
