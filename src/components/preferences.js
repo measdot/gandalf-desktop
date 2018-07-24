@@ -20,15 +20,20 @@ module.exports = {
 		$('#preferences-form').w2form({
 			name: 'preferences-form',
 			fields: [
-				{name: 'theme', type:'radio', options: {
-						items: [{ id: 1, text: 'Top' }, { id: 2, text: 'Down' }] },
+
+				{name: 'toolbar', type:'radio', options: {
+						items: [{ id: 1, text: 'Down' }, { id: 2, text: 'Up' }] },
 					html:{
 						caption: 'Toolbar Position',style:style}},
-				{name: 'toolbar', type:'radio', options: {
-						items: [{ id: 1, text: 'Dark' }, { id: 2, text: 'Light' }] },
+
+				{name: 'theme', type:'radio', options: {
+						items: [{ id: 1, text: 'Light' }, { id: 2, text: 'Dark' }] },
 					html:{
 						caption: 'Select Theme',style:style}},
 			]
 		});
+		$('input[name="theme"]').attr('disabled', 'disabled');
+		$('input[name="toolbar"]').attr('disabled', 'disabled');
+		$('#theme, #toolbar:radio').prop('checked', true);
 	}
 };
