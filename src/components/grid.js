@@ -32,7 +32,7 @@ const config ={
 								caption: sel_record.service,
 								closable: true,
 								content: {
-									action: sel_record.service + ' action form',
+									action: '<div id="' + sel_record.recid + '" style="width: 100%;height: 100%"></div>',
 									logs: sel_record.service + ' log window'
 								},
 							});

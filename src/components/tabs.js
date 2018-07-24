@@ -76,9 +76,11 @@ module.exports = {
 		$('#'+config.layout.name).w2layout(config.layout);
 
 		// put the tab action panel contents
-		w2ui[config.layout.name].content('main', '<div id="001" style="width: 100%"></div>')
+		w2ui[config.layout.name].content('main', newTab.content.action)
 		w2ui[config.layout.name].content('preview', newTab.content.logs)
-		require("./services/001").init();
+
+		// init tab action
+		require("./services/"+ newTab.id).init();
 
 	},
 
@@ -90,7 +92,14 @@ module.exports = {
 	},
 
 	closeTab: function (tabId) {
+		//remove tab
 		w2ui['tabs'].remove(tabId);
+
+		//remove tab action
+		w2ui[tabId].destroy();
+
+		//remove tab logs
+
 		let prevTabId = ($('#tab'+tabId).prev().attr('id')).replace('tab','');
 		module.exports.select(prevTabId);
 	}
