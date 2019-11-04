@@ -2,7 +2,7 @@ module.exports.init = function(){
 	$('#001').w2form({
 		name     : '001',
 		url      : 'server/post',
-		header   : 'Field Types',
+		// header   : 'Field Types',
 		// formURL  : 'data/form.html',
 		fields: [
 			{ field: 'field_text', type: 'text', required: true },
@@ -19,19 +19,17 @@ module.exports.init = function(){
 			{ field: 'field_check', type: 'checkbox', required: false },
 			{ field: 'field_radio', type: 'radio', required: false }
 		],
-		actions: {
-			reset: function () {
-				this.clear();
-			},
-			run: function () {
-				var obj = this;
-				this.save({}, function (data) {
-					if (data.status == 'error') {
-						console.log('ERROR: '+ data.message);
-						return;
-					}
-					obj.clear();
-				});
+		toolbar: {
+			items: [
+				{ id: 'bt1', type: 'button', caption: 'Tool Button 1', img: 'icon-folder' },
+				{ id: 'bt2', type: 'button', caption: 'Tool Button 2', img: 'icon-folder' },
+				{ id: 'bt3', type: 'spacer' },
+				{ id: 'bt4', type: 'button', caption: 'Reset', img: 'icon-page' },
+				{ id: 'bt5', type: 'button', caption: 'Run', img: 'icon-page' }
+			],
+				onClick: function (event) {
+				if (event.target == 'bt4') w2ui.form.clear();
+				if (event.target == 'bt5') w2ui.form.save();
 			}
 		}
 	});

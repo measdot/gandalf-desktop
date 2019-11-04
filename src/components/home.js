@@ -1,5 +1,14 @@
 const pug = require('pug');
 
+// var windowbar = require('windowbar');
+//
+// var wb = new windowbar({'style':'mac', 'dblClickable':false})
+// 	.on('close', console.log('close'))
+// 	.on('minimize', console.log('minimize'))
+// 	.on('fullscreen', console.log('fullscreen'))
+// 	.on('maximize', console.log('maximize'))
+// 	.appendTo(document.body);
+
 const grid = require('./grid')
 const mainToolbar = require('./toolbar')
 const dashboard = require('./tabs')
