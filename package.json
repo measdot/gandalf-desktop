@@ -37,7 +37,7 @@
     "fs-jetpack": "^1.0.0",
     "jira-client": "^6.4.1",
     "nedb": "^1.8.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.13.1",
     "pug": "^2.0.3",
     "sass-loader": "^7.0.3",
     "windowbar": "^1.6.4"
